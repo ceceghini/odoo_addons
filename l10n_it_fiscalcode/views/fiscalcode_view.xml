@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+<openerp>
+	<data>
+
+        <record id="view_partner_form_fiscalcode_data" model="ir.ui.view">
+            <field name="name">res.partner.fiscalcode.data</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_vat.view_partner_form"/>
+            <field name="arch" type="xml">
+                <field name="name" position="replace">
+                    <field name="name"
+                           on_change="onchange_name(name, splitmode)" />
+                </field>
+                <xpath expr="//field[@name='category_id']" position="after">
+                    <group>
+                        <field name="lastname" col="2" />
+                        <field name="firstname" col="2" />
+                        <table><tr>
+                        <td><field name="splitmode" invisible="1" />
+                        </td>
+                        <td><field name="split_next" invisible="1" />
+                        </td>
+                        </tr></table>
+                    </group>
+                </xpath>
+                <xpath expr="//div[@name='vat_info']" position="after">
+                    <label for="fiscalcode" />
+                    <div name="fiscalcode_info">
+                        <field name="fiscalcode" class="oe_inline"
+                               on_change="onchange_fiscalcode(fiscalcode, country_id)"  />
+                        <field name="individual" colspan="1" />
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+	</data>
+</openerp>

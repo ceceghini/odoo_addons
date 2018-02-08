@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<openerp>
+<data>
+    <record id="account_journal_ade_view_form" model="ir.ui.view">
+        <field name="name">Tax Authority parameters</field>
+        <field name="model">account.journal</field>
+        <field name="inherit_id" ref="account.view_account_journal_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='sequence_id']" position="after">
+                <field name="rev_charge"
+                       on_change="onchange_check_subtype('rev_charge', type, rev_charge, anom_sale_receipts, proforma)"/>
+                <field name="anom_sale_receipts"
+                       on_change="onchange_check_subtype('anom_sale_receipts', type, rev_charge, anom_sale_receipts, proforma)"/>
+                <field name="proforma"
+                       on_change="onchange_check_subtype('proforma', type, rev_charge, anom_sale_receipts, proforma)"/>
+            </xpath>
+        </field>
+    </record>
+
+    </data>
+</openerp>
